@@ -1,3 +1,3 @@
 ```
-git clone --recursive git@github.com:sbstn-jmnz/devops-fundamentals.git
+git clone --recursive git@github.com:Andres-Herbozo/devops-fundamentals.git
 ```
