@@ -1,0 +1,24 @@
+name = "devops-modern"
+description = "Modern DevOps Dashboard theme for Zola - Professional, clean, and optimized for technical documentation"
+license = "MIT"
+homepage = "https://github.com/Andres-Herbozo/devops-fundamentals"
+min_version = "0.15.0"
+demo = "https://andres-herbozo.github.io/devops-fundamentals/"
+
+[extra]
+# Theme configuration
+primary_color = "#2563eb"  # Blue
+secondary_color = "#059669"  # Green
+accent_color = "#ea580c"  # Orange
+dark_bg = "#0f172a"  # Dark blue
+light_bg = "#f8fafc"  # Light gray
+
+# Navigation settings
+show_navigation = true
+show_breadcrumbs = true
+show_search = true
+show_toc = true
+
+[author]
+name = "Andres Herbozo"
+homepage = "https://github.com/Andres-Herbozo"

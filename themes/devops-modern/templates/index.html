@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Fundamentos DevOps</span>
+                <span class="hero-subtitle">Adalid</span>
+            </h1>
+            <p class="hero-description">
+                Aprende a integrar desarrollo, operaciones y calidad en un solo flujo de trabajo. 
+                Domina las prácticas DevOps más demandadas por la industria.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ config.base_url }}docs" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Comenzar Curso
+                </a>
+                <a href="https://github.com/Andres-Herbozo/devops-fundamentals" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-github"></i>
+                    Ver en GitHub
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="devops-diagram">
+                <div class="diagram-item dev">
+                    <i class="fas fa-code"></i>
+                    <span>Dev</span>
+                </div>
+                <div class="diagram-item ops">
+                    <i class="fas fa-server"></i>
+                    <span>Ops</span>
+                </div>
+                <div class="diagram-item qa">
+                    <i class="fas fa-bug"></i>
+                    <span>QA</span>
+                </div>
+                <div class="diagram-connector"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="features-section">
+    <div class="container">
+        <h2 class="section-title">Módulos del Curso</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>Orientación y Metodología</h3>
+                <p>Conoce el perfil laboral, el enfoque bootcamp del curso y el impacto de la sobriedad digital en la industria TI.</p>
+                <a href="{{ config.base_url }}docs/01-orientacion-perfil-y-metodologia" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fundamentos y Adopción DevOps</h3>
+                <p>Explora los principios, cultura, ciclo de vida y estrategias de adopción DevOps en organizaciones tecnológicas modernas.</p>
+                <a href="{{ config.base_url }}docs/02-fundamentos-y-adopcion-devops" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3>Integración Continua</h3>
+                <p>Implementa procesos de construcción automática de software con Git, Maven, Jenkins, SonarQube y herramientas DevSecOps.</p>
+                <a href="{{ config.base_url }}docs/03-integracion-continua" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <h3>Automatización de Pruebas</h3>
+                <p>Aplica pruebas automatizadas con JUnit, SOAPUI, JMeter y Selenium para asegurar calidad en integración continua.</p>
+                <a href="{{ config.base_url }}docs/04-automatizacion-de-pruebas" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <h3>Arquitectura y Escalabilidad</h3>
+                <p>Analiza principios arquitectónicos modernos, microservicios y escalabilidad de soluciones digitales con enfoque DevOps.</p>
+                <a href="{{ config.base_url }}docs/05-arquitectura-y-escalabilidad" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Tecnología Cloud y DevOps</h3>
+                <p>Integra servicios en la nube, contenedores y automatización de infraestructura como código para entornos DevOps.</p>
+                <a href="{{ config.base_url }}docs/06-tecnologia-cloud-y-devops" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Despliegue y Monitoreo Continuo</h3>
+                <p>Configura procesos automatizados de entrega y monitoreo de software para una operación confiable y ágil.</p>
+                <a href="{{ config.base_url }}docs/07-despliegue-y-monitoreo-continuo" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Desarrollo de Portafolio Profesional</h3>
+                <p>Compila productos desarrollados durante el curso en un portafolio que refleje tus competencias DevOps.</p>
+                <a href="{{ config.base_url }}docs/08-desarrollo-de-portafolio" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Empleabilidad en la Industria Digital</h3>
+                <p>Prepara tu perfil profesional, mejora tu presentación laboral y comprende el entorno de empleabilidad en TI.</p>
+                <a href="{{ config.base_url }}docs/09-empleabilidad-industria-digital" class="feature-link">Ver módulo <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Módulos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">29</div>
+                <div class="stat-label">Páginas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Práctico</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Recursos</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

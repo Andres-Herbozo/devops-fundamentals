@@ -4,7 +4,7 @@ base_url = "https://andres-herbozo.github.io/devops-fundamentals/"
 title = "Fundamentos DevOps"
 description = "Curso integral para implementar prácticas DevOps en organizaciones, con foco en integración continua, automatización, cloud computing y cultura ágil."
 default_language = "es"
-theme = 'adidoks'
+theme = 'devops-modern'
 
 # For overriding the default output directory `public`, set it to another value (e.g.: "docs")
 output_dir = "public"
