@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="docs-container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="{{ config.base_url }}">Inicio</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="{{ config.base_url }}docs">Curso</a>
+            {% if section.ancestors %}
+                {% for ancestor in section.ancestors %}
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="{{ ancestor.permalink }}">{{ ancestor.title }}</a>
+                {% endfor %}
+            {% endif %}
+            <i class="fas fa-chevron-right"></i>
+            <span>{{ section.title }}</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="docs-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="docs-sidebar">
+                <div class="sidebar-content">
+                    <h3 class="sidebar-title">Módulos del Curso</h3>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="{{ config.base_url }}docs/01-orientacion-perfil-y-metodologia">01. Orientación y Metodología</a></li>
+                            <li><a href="{{ config.base_url }}docs/02-fundamentos-y-adopcion-devops">02. Fundamentos y Adopción DevOps</a></li>
+                            <li><a href="{{ config.base_url }}docs/03-integracion-continua">03. Integración Continua</a></li>
+                            <li><a href="{{ config.base_url }}docs/04-automatizacion-de-pruebas">04. Automatización de Pruebas</a></li>
+                            <li><a href="{{ config.base_url }}docs/05-arquitectura-y-escalabilidad">05. Arquitectura y Escalabilidad</a></li>
+                            <li><a href="{{ config.base_url }}docs/06-tecnologia-cloud-y-devops">06. Tecnología Cloud y DevOps</a></li>
+                            <li><a href="{{ config.base_url }}docs/07-despliegue-y-monitoreo-continuo">07. Despliegue y Monitoreo Continuo</a></li>
+                            <li><a href="{{ config.base_url }}docs/08-desarrollo-de-portafolio">08. Desarrollo de Portafolio Profesional</a></li>
+                            <li><a href="{{ config.base_url }}docs/09-empleabilidad-industria-digital">09. Empleabilidad en la Industria Digital</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="docs-content">
+                <article class="docs-article">
+                    <header class="article-header">
+                        <h1 class="article-title">{{ section.title }}</h1>
+                        {% if section.description %}
+                            <p class="article-description">{{ section.description }}</p>
+                        {% endif %}
+                    </header>
+
+                    <div class="article-content">
+                        {{ section.content | safe }}
+                    </div>
+
+                    <!-- List of pages in this section -->
+                    {% if section.pages %}
+                    <div class="section-pages">
+                        <h2>Contenido del Módulo</h2>
+                        <div class="pages-grid">
+                            {% for page in section.pages %}
+                            <div class="page-card">
+                                <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+                                {% if page.description %}
+                                    <p>{{ page.description }}</p>
+                                {% endif %}
+                                <a href="{{ page.permalink }}" class="read-more">
+                                    Leer más <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </article>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

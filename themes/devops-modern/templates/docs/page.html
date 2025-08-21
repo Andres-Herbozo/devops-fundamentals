@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="docs-container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="{{ config.base_url }}">Inicio</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="{{ config.base_url }}docs">Curso</a>
+            {% if page.ancestors %}
+                {% for ancestor in page.ancestors %}
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="{{ ancestor.permalink }}">{{ ancestor.title }}</a>
+                {% endfor %}
+            {% endif %}
+            <i class="fas fa-chevron-right"></i>
+            <span>{{ page.title }}</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="docs-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="docs-sidebar">
+                <div class="sidebar-content">
+                    <h3 class="sidebar-title">Módulos del Curso</h3>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="{{ config.base_url }}docs/01-orientacion-perfil-y-metodologia">01. Orientación y Metodología</a></li>
+                            <li><a href="{{ config.base_url }}docs/02-fundamentos-y-adopcion-devops">02. Fundamentos y Adopción DevOps</a></li>
+                            <li><a href="{{ config.base_url }}docs/03-integracion-continua">03. Integración Continua</a></li>
+                            <li><a href="{{ config.base_url }}docs/04-automatizacion-de-pruebas">04. Automatización de Pruebas</a></li>
+                            <li><a href="{{ config.base_url }}docs/05-arquitectura-y-escalabilidad">05. Arquitectura y Escalabilidad</a></li>
+                            <li><a href="{{ config.base_url }}docs/06-tecnologia-cloud-y-devops">06. Tecnología Cloud y DevOps</a></li>
+                            <li><a href="{{ config.base_url }}docs/07-despliegue-y-monitoreo-continuo">07. Despliegue y Monitoreo Continuo</a></li>
+                            <li><a href="{{ config.base_url }}docs/08-desarrollo-de-portafolio">08. Desarrollo de Portafolio Profesional</a></li>
+                            <li><a href="{{ config.base_url }}docs/09-empleabilidad-industria-digital">09. Empleabilidad en la Industria Digital</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="docs-content">
+                <article class="docs-article">
+                    <header class="article-header">
+                        <h1 class="article-title">{{ page.title }}</h1>
+                        {% if page.description %}
+                            <p class="article-description">{{ page.description }}</p>
+                        {% endif %}
+                    </header>
+
+                    <div class="article-content">
+                        {{ page.content | safe }}
+                    </div>
+
+                    <!-- Navigation between pages -->
+                    <nav class="article-navigation">
+                        {% if page.lower %}
+                            <a href="{{ page.lower.permalink }}" class="nav-prev">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>{{ page.lower.title }}</span>
+                            </a>
+                        {% endif %}
+                        
+                        {% if page.higher %}
+                            <a href="{{ page.higher.permalink }}" class="nav-next">
+                                <span>{{ page.higher.title }}</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </article>
+            </main>
+
+            <!-- Table of Contents -->
+            {% if page.toc %}
+            <aside class="docs-toc">
+                <div class="toc-content">
+                    <h3 class="toc-title">Contenido</h3>
+                    <nav class="toc-nav">
+                        {{ page.toc | safe }}
+                    </nav>
+                </div>
+            </aside>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
