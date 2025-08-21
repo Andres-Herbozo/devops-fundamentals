@@ -34,7 +34,7 @@ jobs:
           chmod +x /usr/local/bin/zola
       
       - name: Build
-        run: zola build --base-url ${{ steps.deployment.outputs.page_url }}
+        run: zola build --base-url https://andres-herbozo.github.io/devops-fundamentals/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
