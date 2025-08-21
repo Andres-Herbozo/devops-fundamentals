@@ -11,7 +11,7 @@
             {% if section.ancestors %}
                 {% for ancestor in section.ancestors %}
                     <i class="fas fa-chevron-right"></i>
-                    <a href="{{ ancestor.permalink }}">{{ ancestor.title }}</a>
+                    <a href="{{ ancestor.path }}">{{ ancestor.title }}</a>
                 {% endfor %}
             {% endif %}
             <i class="fas fa-chevron-right"></i>
