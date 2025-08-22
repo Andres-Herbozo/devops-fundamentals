@@ -84,6 +84,9 @@ jobs:
       
       - name: Run Cypress tests manually
         run: |
+          # Limpiar todas las variables de entorno problemáticas
+          unset CYPRESS_CI_BUILD_ID CYPRESS_GROUP CYPRESS_TAG CYPRESS_PARALLEL CYPRESS_AUTO_CANCEL_AFTER_FAILURES || true
+          
           npx cypress run \
             --config baseUrl=http://localhost:1111 \
             --spec cypress/e2e/devops-specific.cy.js \
