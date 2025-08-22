@@ -1,4 +1,4 @@
-name: Cypress Simple
+name: Cypress Manual
 
 on:
   push:
@@ -39,20 +39,18 @@ jobs:
         run: |
           curl -f http://localhost:1111 || exit 1
       
-      - name: Run Cypress
-        uses: cypress-io/github-action@v5
-        with:
-          browser: chrome
-          wait-on: 'http://localhost:1111'
-          wait-on-timeout: 120
-          config: baseUrl=http://localhost:1111
-          record: false
-          spec: cypress/e2e/devops-specific.cy.js
+      - name: Run Cypress manually
+        run: |
+          npx cypress run \
+            --config baseUrl=http://localhost:1111 \
+            --spec cypress/e2e/devops-specific.cy.js \
+            --browser chrome \
+            --headless
       
       - name: Test Summary
         run: |
           echo "## 🧪 Tests Completados" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Cypress ejecutado exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Cypress ejecutado manualmente" >> $GITHUB_STEP_SUMMARY
           echo "- 🎯 Archivo: devops-specific.cy.js" >> $GITHUB_STEP_SUMMARY
           echo "- 🌐 Servidor: http://localhost:1111" >> $GITHUB_STEP_SUMMARY
           echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
