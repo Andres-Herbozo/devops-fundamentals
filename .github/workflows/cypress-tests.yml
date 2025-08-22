@@ -1,0 +1,113 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Navegadores para testing
+        browser: [chrome, firefox, edge]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Setup Zola
+        run: |
+          curl -s -L https://github.com/getzola/zola/releases/download/v0.17.1/zola-v0.17.1-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /usr/local/bin zola
+          chmod +x /usr/local/bin/zola
+      
+      - name: Start Zola server
+        run: |
+          zola serve --port 1111 --interface 0.0.0.0 &
+          sleep 10
+      
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: ${{ matrix.browser }}
+          wait-on: 'http://localhost:1111'
+          wait-on-timeout: 120
+          config: baseUrl=http://localhost:1111
+          record: false
+          parallel: false
+          group: 'Actions example'
+          spec: |
+            cypress/e2e/devops-specific.cy.js
+            cypress/e2e/homepage.cy.js
+            cypress/e2e/navigation.cy.js
+            cypress/e2e/functionality.cy.js
+            cypress/e2e/performance-accessibility.cy.js
+      
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots-${{ matrix.browser }}
+          path: cypress/screenshots
+          if-no-files-found: ignore
+      
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos-${{ matrix.browser }}
+          path: cypress/videos
+          if-no-files-found: ignore
+
+  cypress-visual:
+    runs-on: ubuntu-latest
+    needs: cypress-run
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Setup Zola
+        run: |
+          curl -s -L https://github.com/getzola/zola/releases/download/v0.17.1/zola-v0.17.1-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /usr/local/bin zola
+          chmod +x /usr/local/bin/zola
+      
+      - name: Start Zola server
+        run: |
+          zola serve --port 1111 --interface 0.0.0.0 &
+          sleep 10
+      
+      - name: Run Cypress visual regression tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          wait-on: 'http://localhost:1111'
+          wait-on-timeout: 120
+          config: baseUrl=http://localhost:1111
+          record: false
+          spec: cypress/e2e/devops-specific.cy.js
