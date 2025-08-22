@@ -1,4 +1,4 @@
-name: Test
+name: Cypress Simple
 
 on:
   push:
@@ -33,9 +33,13 @@ jobs:
       - name: Start Zola server
         run: |
           zola serve --port 1111 --interface 0.0.0.0 &
-          sleep 10
+          sleep 15
       
-      - name: Run Cypress tests
+      - name: Verify server
+        run: |
+          curl -f http://localhost:1111 || exit 1
+      
+      - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
@@ -45,6 +49,14 @@ jobs:
           record: false
           spec: cypress/e2e/devops-specific.cy.js
           quiet: true
+      
+      - name: Test Summary
+        run: |
+          echo "## 🧪 Tests Completados" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Cypress ejecutado exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎯 Archivo: devops-specific.cy.js" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 Servidor: http://localhost:1111" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
       
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4

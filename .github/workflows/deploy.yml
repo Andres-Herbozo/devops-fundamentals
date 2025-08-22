@@ -91,6 +91,7 @@ jobs:
           config: baseUrl=http://localhost:1111
           record: false
           spec: cypress/e2e/devops-specific.cy.js
+          quiet: true
       
       - name: Test Summary
         run: |
