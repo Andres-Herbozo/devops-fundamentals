@@ -33,13 +33,32 @@ jobs:
       - name: Start Zola server
         run: |
           zola serve --port 1111 --interface 0.0.0.0 &
-          sleep 10
+          sleep 15
+      
+      - name: Verify server
+        run: |
+          curl -f http://localhost:1111 || exit 1
       
       - name: Run Cypress tests
         run: |
-          npx cypress run --browser chrome --config baseUrl=http://localhost:1111 --spec cypress/e2e/devops-specific.cy.js
+          # Limpiar todas las variables de entorno problemáticas
+          unset CYPRESS_CI_BUILD_ID CYPRESS_GROUP CYPRESS_TAG CYPRESS_PARALLEL CYPRESS_AUTO_CANCEL_AFTER_FAILURES || true
+          
+          npx cypress run \
+            --config baseUrl=http://localhost:1111 \
+            --spec cypress/e2e/devops-specific.cy.js \
+            --browser chrome \
+            --headless
         env:
           CYPRESS_baseUrl: http://localhost:1111
+      
+      - name: Test Summary
+        run: |
+          echo "## 🧪 Tests Completados" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Cypress ejecutado exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎯 Archivo: devops-specific.cy.js" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 Servidor: http://localhost:1111" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
       
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4

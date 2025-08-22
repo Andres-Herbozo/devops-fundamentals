@@ -251,13 +251,13 @@ p {
     font-size: 0.9rem;
 }
 
-.diagram-connector {
+/* .diagram-connector {
     position: absolute;
     width: 2px;
     height: 60px;
     background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
     transform: rotate(45deg);
-}
+} */
 
 /* Features Section */
 .features-section {
