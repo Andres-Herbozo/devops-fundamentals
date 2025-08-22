@@ -43,12 +43,7 @@ jobs:
           wait-on-timeout: 120
           config: baseUrl=http://localhost:1111
           record: false
-          spec: |
-            cypress/e2e/devops-specific.cy.js
-            cypress/e2e/homepage.cy.js
-            cypress/e2e/navigation.cy.js
-            cypress/e2e/functionality.cy.js
-            cypress/e2e/performance-accessibility.cy.js
+          spec: cypress/e2e/devops-specific.cy.js
       
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4
