@@ -36,14 +36,10 @@ jobs:
           sleep 10
       
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
-        with:
-          browser: chrome
-          wait-on: 'http://localhost:1111'
-          wait-on-timeout: 120
-          config: baseUrl=http://localhost:1111
-          record: false
-          spec: cypress/e2e/devops-specific.cy.js
+        run: |
+          npx cypress run --browser chrome --config baseUrl=http://localhost:1111 --spec cypress/e2e/devops-specific.cy.js
+        env:
+          CYPRESS_baseUrl: http://localhost:1111
       
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4
