@@ -1,5 +1,5 @@
 ```
 git clone --recursive git@github.com:Andres-Herbozo/devops-fundamentals.git
 ```
-# Updated at Wed Aug 20 23:25:10 -03 2025
-# DevOps Modern Theme - Wed Aug 20 23:40:42 -03 2025
+Este proyecto nació desde un sitio estático creado para un bootcamp de DevOps en el cual se fue iterando y resultó en un sitio dinámico y moderno.
+

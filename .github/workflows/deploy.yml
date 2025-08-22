@@ -36,6 +36,14 @@ jobs:
       - name: Build site
         run: zola build --base-url https://andres-herbozo.github.io/devops-fundamentals/
       
+      - name: Build Summary
+        run: |
+          echo "## 🚀 Build Completado" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Sitio DevOps construido exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- 📁 Archivos generados en ./public" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 URL: https://andres-herbozo.github.io/devops-fundamentals/" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -84,6 +92,14 @@ jobs:
           record: false
           spec: cypress/e2e/devops-specific.cy.js
       
+      - name: Test Summary
+        run: |
+          echo "## 🧪 Tests Ejecutados" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Cypress tests completados exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎯 Archivo: devops-specific.cy.js" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 Servidor: http://localhost:1111" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+      
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4
         if: failure()
@@ -100,6 +116,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     steps:
+      - name: Deploy Summary
+        run: |
+          echo "## 🚀 Deploy Iniciado" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Build y tests completados exitosamente" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 Desplegando a GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "- 📁 Usando artifact del build" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
